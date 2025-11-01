@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Combo Offers - AM Mobile Service</title>
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #1a1a1a, #0d0d0d);
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    perspective: 1000px;
+  }
+
+  header {
+    text-align: center;
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    padding: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+    border-radius: 12px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #ff4b2b;
+  }
+
+  /* 🔍 Search bar styling */
+  .search-bar {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .search-bar input {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    text-align: center;
+  }
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 10px;
+  }
+
+  .card {
+    width: 220px;
+    height: 280px;
+    background: linear-gradient(145deg, #1a1a1a, #121212);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: rotateY(10deg) scale(1.05);
+    box-shadow: 0 15px 35px rgba(255,255,255,0.3);
+  }
+
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 2px solid #ff416c;
+  }
+
+  .card-info {
+    text-align: center;
+    padding: 10px;
+  }
+
+  .card-info h3 {
+    margin: 5px 0;
+    color: #ff416c;
+    font-size: 1.2rem;
+  }
+
+  .card-info p {
+    color: #0f0;
+    font-weight: bold;
+  }
+
+  .brand-btn {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .brand-btn button {
+    background: linear-gradient(145deg, #ff416c, #ff4b2b);
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+  }
+
+  .brand-btn button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(145deg, #ff4b2b, #ff416c);
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #aaa;
+  }
+</style>
+</head>
+<body>
+
+<header>📱 Combo Offers</header>
+
+<h2>🔹 Select Brand</h2>
+
+<!-- 🔍 Search Bar -->
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search brand or price..." onkeyup="searchCombos()">
+</div>
+
+<div class="grid" id="comboGrid">
+
+  <div class="card" data-name="redmi poco" onclick="window.location.href='combos/redmi_poco.html'">
+    <img src="../images/combos/redmi_poco/redmi_9a.jpg" alt="Redmi / Poco">
+    <div class="card-info">
+      <h3>Redmi / Poco</h3>
+      <p>₹1000 – ₹1500</p>
+    </div>
+  </div>
+
+  <div class="card" data-name="realme oppo" onclick="window.location.href='combos/realme_oppo.html'">
+    <img src="../images/combos/realme_oppo/realme_5.jpg" alt="Realme / Oppo">
+    <div class="card-info">
+      <h3>Realme / Oppo</h3>
+      <p>₹1000 – ₹1500</p>
+    </div>
+  </div>
+
+  <div class="card" data-name="vivo iqoo" onclick="window.location.href='combos/vivo_iqoo.html'">
+    <img src="../images/combos/vivo_iqoo/vivo_y11.jpg" alt="Vivo / iQOO">
+    <div class="card-info">
+      <h3>Vivo / iQOO</h3>
+      <p>₹1000 – ₹1500</p>
+    </div>
+  </div>
+
+  <div class="card" data-name="samsung" onclick="window.location.href='combos/samsung.html'">
+    <img src="../images/combos/samsung/samsung_a12.jpg" alt="Samsung">
+    <div class="card-info">
+      <h3>Samsung</h3>
+      <p>₹1000 – ₹1500</p>
+    </div>
+  </div>
+
+  <div class="card" data-name="infinix" onclick="window.location.href='combos/infinix.html'">
+    <img src="../images/combos/infinix/infinix_smart7.jpg" alt="Infinix">
+    <div class="card-info">
+      <h3>Infinix</h3>
+      <p>₹1000 – ₹1500</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="brand-btn">
+  <button onclick="window.location.href='../index.html'">⬅️ Back to Home</button>
+</div>
+
+<footer>© 2025 AM Mobile Service | All Rights Reserved</footer>
+
+<script>
+  // 🔍 Combo search system
+  function searchCombos() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+      const name = card.getAttribute('data-name').toLowerCase();
+      const text = card.innerText.toLowerCase();
+
+      if (name.includes(input) || text.includes(input)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

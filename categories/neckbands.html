@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Neckbands - AM Mobile Service</title>
+<style>
+:root{--bg:#0d0d0d;--card:#1a1a1a;--accent:#ff416c;--text:#fff;--muted:#aaa;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Segoe UI",sans-serif;background:var(--bg);color:var(--text);}
+header{background:linear-gradient(90deg,var(--accent),#ff4b2b);padding:18px;text-align:center;font-weight:700;font-size:20px;box-shadow:0 4px 10px rgba(0,0,0,0.5);}
+.top-controls{display:flex;gap:12px;align-items:center;justify-content:center;padding:14px;background:#0b0b0b;border-bottom:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;}
+.top-controls input,.top-controls select,.top-controls button{padding:10px 12px;border-radius:8px;border:none;background:#111;color:#fff;outline:none;min-width:200px;}
+.top-controls button{background:linear-gradient(145deg,#444,#222);cursor:pointer;transition:all .3s;font-weight:bold;}
+.top-controls button:hover{background:linear-gradient(145deg,var(--accent),#ff4b2b);transform:scale(1.05);}
+.container{padding:20px;max-width:1200px;margin:auto;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px;justify-content:center;}
+.card{background:var(--card);border-radius:12px;overflow:hidden;text-align:center;padding-bottom:10px;box-shadow:0 8px 18px rgba(0,0,0,0.6);transform-style:preserve-3d;perspective:1000px;transition:all .4s ease;}
+.card:hover{transform:rotateY(10deg) translateY(-8px) scale(1.05);box-shadow:0 12px 30px rgba(255,65,108,.5);}
+.thumb{width:100%;height:180px;background:#111;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.card:hover img{transform:scale(1.1);}
+.info{padding:12px;}
+.title{font-weight:600;font-size:15px;margin:6px 0 4px;color:#fff;}
+.price{color:#00ffcc;font-weight:700;font-size:15px;}
+.meta{color:var(--muted);font-size:13px;margin-top:4px;}
+.no-results{text-align:center;color:var(--muted);padding:40px 10px;font-size:18px;}
+.hint{text-align:center;color:var(--muted);font-size:13px;margin-top:12px;}
+footer{background:#111;text-align:center;color:#aaa;padding:15px;margin-top:30px;}
+@media(max-width:480px){.thumb{height:150px;}.top-controls input{min-width:140px;}}
+</style>
+</head>
+<body>
+<header>🎧 Neckbands Collection</header>
+
+<div class="top-controls">
+  <input type="text" id="q" placeholder="Search neckband (e.g. Boat, Realme)" />
+  <select id="priceFilter">
+    <option value="all">All Prices</option>
+    <option value="under1000">Under ₹1000</option>
+    <option value="1000-2000">₹1000 - ₹2000</option>
+    <option value="above2000">Above ₹2000</option>
+  </select>
+  <button id="resetBtn">Reset</button>
+  <a href="../index.html"><button>🏠 Home</button></a>
+</div>
+
+<div class="container">
+  <div id="grid" class="grid"></div>
+  <div id="noResults" class="no-results" style="display:none;">❌ कोई product नहीं मिला — कुछ और search करें।</div>
+  <div class="hint">
+    👉 नए neckbands जोड़ने के लिए नीचे <b>products array</b> में simply और objects जोड़ो।  
+    Image path example: <code>../images/neckbands/neckband-011.jpg</code>
+  </div>
+</div>
+
+<footer>© 2025 AM Mobile Service | All Rights Reserved</footer>
+
+<script>
+const products=[
+  {id:1,title:"Boat Rockerz 255",price:1199,img:"../images/neckbands/neckband-001.jpg"},
+  {id:2,title:"OnePlus Bullets Z2",price:1599,img:"../images/neckbands/neckband-002.jpg"},
+  {id:3,title:"Realme Buds Wireless 2",price:1399,img:"../images/neckbands/neckband-003.jpg"},
+  {id:4,title:"Noise Tune Charge",price:999,img:"../images/neckbands/neckband-004.jpg"},
+  {id:5,title:"Boult Audio Curve Max",price:1299,img:"../images/neckbands/neckband-005.jpg"}
+];
+
+const grid=document.getElementById('grid');
+const noResults=document.getElementById('noResults');
+
+function render(list){
+  grid.innerHTML='';
+  if(!list.length){noResults.style.display='block';return;}
+  noResults.style.display='none';
+  list.forEach(p=>{
+    const c=document.createElement('div');c.className='card';
+    c.innerHTML=`<div class="thumb"><img loading="lazy" src="${p.img}" alt="${p.title}" onerror="this.onerror=null;this.src='../images/placeholder-neckband.jpg'"></div>
+    <div class="info"><div class="title">${p.title}</div><div class="price">₹${p.price}</div><div class="meta">ID: ${p.id}</div></div>`;
+    grid.appendChild(c);
+  });
+}
+render(products);
+
+const q=document.getElementById('q');
+const priceFilter=document.getElementById('priceFilter');
+function applyFilters(){
+  const query=q.value.trim().toLowerCase();
+  const pf=priceFilter.value;
+  const filtered=products.filter(p=>{
+    const matchQ=!query||(p.title&&p.title.toLowerCase().includes(query));
+    let matchPrice=true;
+    if(pf==='under1000')matchPrice=p.price<1000;
+    if(pf==='1000-2000')matchPrice=p.price>=1000&&p.price<=2000;
+    if(pf==='above2000')matchPrice=p.price>2000;
+    return matchQ&&matchPrice;
+  });
+  render(filtered);
+}
+q.addEventListener('input',applyFilters);
+priceFilter.addEventListener('change',applyFilters);
+document.getElementById('resetBtn').addEventListener('click',()=>{q.value='';priceFilter.value='all';render(products);});
+</script>
+</body>
+</html>
