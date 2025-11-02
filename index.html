@@ -151,6 +151,32 @@
     box-shadow: 0 -3px 10px rgba(0,0,0,0.4);
   }
 
+  /* ✅ Floating WhatsApp Button */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    background: #20ba5a;
+  }
+
   @media(max-width: 768px) {
     .flip-card { width: 45%; }
   }
@@ -168,16 +194,11 @@
 
 <nav>
   <input type="text" id="searchBox" placeholder="Search products..." onkeyup="searchProducts()">
- <button onclick="openCombos()">Combos</button>
+  <button onclick="openCombos()">Combos</button>
   <button onclick="showCategory('chargers')">Chargers</button>
   <button onclick="showCategory('neckbands')">Neckbands</button>
-  <button onclick="showCategory('covers')">Mobile Covers</button>
   <a href="categories/cover.html"><button>Mobile Covers</button></a>
-
-  <!-- ✅ Sound Box button now links to external page -->
   <a href="categories/soundbox.html"><button>Sound Box</button></a>
-  
-
   <button onclick="showCategory('contact')">Contact</button>
 </nav>
 
@@ -236,15 +257,21 @@
   <!-- Contact -->
   <section id="contact" class="category">
     <h2>Contact Us</h2>
-    <p>📍 Near Bus Stand</p>
-    <p>📞 +91 98765 43210</p>
-    <p>✉️ support@ammobileservice.com</p>
+    <p>📍 Padhanpali, Petrol Pump, Dishan Complex</p>
+    <p>📞 +91 9937188717</p>
+    <p>✉️ akashmeher2020@gmail.com</p>
+    <p>📍 <a href="https://share.google/A7AeOPffIpj0TiBPn" target="_blank" style="color:#25D366;text-decoration:none;">Google Map Location</a></p>
   </section>
 </main>
 
 <footer>
   © 2025 AM Mobile Service | All Rights Reserved
 </footer>
+
+<!-- ✅ Floating WhatsApp Button -->
+<a href="https://wa.me/919937188717?text=Hello%20AM%20Mobile%20Service%20👋%2C%20I’m%20interested%20in%20your%20products.%20Please%20share%20more%20details!" class="whatsapp-float" target="_blank">
+  💬
+</a>
 
 <script>
 function showCategory(categoryId){
@@ -253,21 +280,17 @@ function showCategory(categoryId){
   document.getElementById(categoryId).style.display = 'block';
 }
 
-// Default category
 window.onload = () => showCategory('covers');
 
-// Search
 function searchProducts(){
   const input = document.getElementById('searchBox').value.toLowerCase();
   const cards = document.querySelectorAll('.flip-card');
-  
   cards.forEach(card => {
     const backText = card.querySelector('.flip-card-back').innerText.toLowerCase();
     card.style.display = backText.includes(input) ? 'block' : 'none';
   });
 }
 
-// Combo redirect
 function openCombos() {
   window.location.href = "categories/combo.html";
 }
