@@ -1,9 +1,92 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact - AM Mobile Service</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - AM Mobile Service</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      background: #2196f3;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: 30px auto;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    input, textarea, button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      background: #0d47a1;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #1565c0;
+    }
+    .success-message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
 </head>
-<body
+<body>
+  <header>
+    <h1>Contact Us</h1>
+  </header>
+
+  <form id="contactForm" action="https://formspree.io/f/your_form_id" method="POST">
+    <label>Your Name</label>
+    <input type="text" name="name" required>
+    <label>Your Email</label>
+    <input type="email" name="email" required>
+    <label>Your Message</label>
+    <textarea name="message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+    <p class="success-message" id="successMsg">✅ Thank you! Your message has been sent successfully.</p>
+  </form>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        successMsg.style.display = 'block';
+        form.reset();
+      } else {
+        alert('Something went wrong. Please try again!');
+      }
+    });
+  </script>
+</body>
+</html>
