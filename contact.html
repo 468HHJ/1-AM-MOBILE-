@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us - AM Mobile Service</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      padding: 20px;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      margin: 0;
+      padding: 0;
       color: #333;
     }
     header {
       text-align: center;
-      background: #2196f3;
+      background: #1565c0;
       color: white;
-      padding: 15px;
-      border-radius: 8px;
+      padding: 20px;
+      border-bottom: 4px solid #0d47a1;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
     form {
       background: #fff;
       padding: 20px;
-      border-radius: 8px;
-      max-width: 500px;
-      margin: 30px auto;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 600;
     }
     input, textarea, button {
       width: 100%;
@@ -36,57 +52,101 @@
     }
     button {
       background: #0d47a1;
-      color: #fff;
+      color: white;
       border: none;
       cursor: pointer;
+      font-weight: 600;
       transition: 0.3s;
     }
     button:hover {
-      background: #1565c0;
+      background: #1976d2;
     }
-    .success-message {
-      text-align: center;
-      color: green;
-      font-weight: bold;
-      display: none;
+    .contact-info {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .contact-info h2 {
+      color: #0d47a1;
+      margin-top: 0;
+    }
+    .contact-info p {
+      line-height: 1.6;
+    }
+    iframe {
+      width: 100%;
+      height: 250px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+    .social {
+      margin-top: 15px;
+    }
+    .social a {
+      text-decoration: none;
+      color: white;
+      background: #1565c0;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin-right: 8px;
+      display: inline-block;
+    }
+    .social a:hover {
+      background: #0d47a1;
+    }
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Contact Us</h1>
+    <h1>Contact AM Mobile Service</h1>
   </header>
 
-  <form id="contactForm" action="https://formspree.io/f/your_form_id" method="POST">
-    <label>Your Name</label>
-    <input type="text" name="name" required>
-    <label>Your Email</label>
-    <input type="email" name="email" required>
-    <label>Your Message</label>
-    <textarea name="message" rows="5" required></textarea>
-    <button type="submit">Send Message</button>
-    <p class="success-message" id="successMsg">✅ Thank you! Your message has been sent successfully.</p>
-  </form>
+  <div class="container">
+    <!-- Contact Form -->
+    <form action="https://formspree.io/f/mnqeaqko" method="POST">
+      <label>Your Name</label>
+      <input type="text" name="name" required>
 
-  <script>
-    const form = document.getElementById('contactForm');
-    const successMsg = document.getElementById('successMsg');
+      <label>Your Email</label>
+      <input type="email" name="email" required>
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        successMsg.style.display = 'block';
-        form.reset();
-      } else {
-        alert('Something went wrong. Please try again!');
-      }
-    });
-  </script>
+      <label>Your Message</label>
+      <textarea name="message" rows="5" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <!-- Contact Info & Map -->
+    <div class="contact-info">
+      <h2>Get in Touch</h2>
+      <p><strong>Address:</strong><br>
+        AM Mobile Service, Near Main Market, Sambalpur, Odisha, India</p>
+
+      <p><strong>Phone:</strong><br>
+        <a href="tel:+919861234567">+91 9861234567</a></p>
+
+      <p><strong>Email:</strong><br>
+        <a href="mailto:akashmeher2020@gmail.com">akashmeher2020@gmail.com</a></p>
+
+      <h3>Find Us on Map:</h3>
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.028541415932!2d83.6824602!3d21.1812337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a214f4770d9e283%3A0x79da56505c0f02fe!2sAM%20MOBILE%20SERVICE!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+
+      <div class="social">
+        
+        <a href="https://wa.me/919937188717" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
