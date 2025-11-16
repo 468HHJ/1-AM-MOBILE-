@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mobile Flip  Covers - AM Mobile Service</title>
+<style>
+  :root{
+    --bg: #0d0d0d;
+    --card: #1a1a1a;
+    --accent: #ff416c;
+    --text: #fff;
+    --muted: #aaa;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  body{
+    font-family: "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header{
+    background: linear-gradient(90deg,var(--accent),#ff4b2b);
+    padding:18px;
+    text-align:center;
+    font-weight:700;
+    font-size:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.5);
+  }
+
+  .top-controls{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    justify-content:center;
+    padding:14px;
+    background:#0b0b0b;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    flex-wrap:wrap;
+  }
+
+  .top-controls input,
+  .top-controls select,
+  .top-controls button{
+    padding:10px 12px;
+    border-radius:8px;
+    border: none;
+    background:#111;
+    color:#fff;
+    outline:none;
+    min-width:200px;
+  }
+
+  .top-controls button{
+    background: linear-gradient(145deg,#444,#222);
+    cursor:pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+  }
+  .top-controls button:hover{
+    background: linear-gradient(145deg,var(--accent),#ff4b2b);
+    transform: scale(1.05);
+  }
+
+  .container{
+    padding:20px;
+    max-width:1200px;
+    margin:auto;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap:20px;
+    justify-content:center;
+  }
+
+  /* 3D Card Effect */
+  .card{
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 10px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.4s ease;
+  }
+
+  .card:hover{
+    transform: rotateY(10deg) translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(255,65,108,0.5);
+  }
+
+  .thumb{
+    width:100%;
+    height:180px;
+    background:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+
+  .thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition: transform 0.5s ease;
+  }
+
+  .card:hover img{
+    transform: scale(1.1);
+  }
+
+  .info{ padding:12px; }
+  .title{
+    font-weight:600;
+    font-size:15px;
+    margin:6px 0 4px;
+    color:#fff;
+  }
+
+  .price{
+    color:#00ffcc;
+    font-weight:700;
+    font-size:15px;
+  }
+
+  .meta{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:4px;
+  }
+
+  .no-results{
+    text-align:center;
+    color:var(--muted);
+    padding:40px 10px;
+    font-size:18px;
+  }
+
+  .hint {
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    margin-top:12px;
+  }
+
+  footer{
+    background:#111;
+    text-align:center;
+    color:#aaa;
+    padding:15px;
+    margin-top:30px;
+  }
+
+  @media(max-width:480px){
+    .thumb{ height:150px; }
+    .top-controls input{ min-width:140px; }
+  }
+</style>
+</head>
+<body>
+
+<header>📱 Mobile flip Covers Collection</header>
+
+<div class="top-controls">
+  <input type="text" id="q" placeholder="Search cover (e.g. Redmi 9A)" />
+  <select id="priceFilter">
+    <option value="all">All Prices</option>
+    <option value="under150">Under ₹150</option>
+    <option value="110-130">₹150 - ₹300</option>
+    <option value="above150">Above ₹150</option>
+  </select>
+  <button id="resetBtn">Reset</button>
+  <a href="../index.html"><button>🏠 Home</button></a>
+</div>
+
+<div class="container">
+  <div id="grid" class="grid"></div>
+  <div id="noResults" class="no-results" style="display:none;">❌ कोई product नहीं मिला — कुछ और search करें।</div>
+
+ 
+<footer>© 2025 AM Mobile Service | All Rights Reserved</footer>
+
+<script>
+// ======================= HOW TO ADD PRODUCTS =======================
+// हर cover को नीचे products array में ऐसे add करो:
+// { id:11, title:"Redmi Note 10 Pro Case", price:200, img:"../images/covers/cover-011.jpg" }
+const products = [
+  {id:1, title:"Samsung J2 flipcover ", price:120, img:"../images/covers/sam_j2.jpg"},
+  {id:2, title:"Samsung a25 5g  flopcover", price:150, img:"../images/covers/sam_a25_5g.jpg"},
+  {id:3, title:"Redmi a1 plus flipcover", price:130, img:"../images/covers/mi_a1_plus.jpg"},
+  {id:4, title:"realme c12 flipcover ", price:140, img:"../images/covers/realme_c12.jpg"},
+  {id:5, title:"Realme c67 4g ", price:160, img:"../images/covers/realme_c67_4g.jpg"},
+  {id:6, title:"Realme c20 Flipcover ", price:150, img:"../images/covers/realme_c20_flip.jpg"},
+  {id:7, title:"Realme c15 flipcover", price:170, img:"../images/covers/realme_c15.jpg"},
+  {id:8, title:"NARZO N53 ", price:150, img:"../images/covers/realme_c53.jpg"},
+  {id:9, title:"MI NOTE 6 PRO ", price:140, img:"../images/covers/mi_note_6pro.jpg"},
+  {id:10, title:"MI 9A FLIPCOVER ", price:120, img:"../images/covers/mi_9a.jpg"},
+  {id:11, title:" MI NOTE 5 PRO ", price:150, img:"../images/covers/mi_note_5pro.jpg"},
+  {id:12, title:"MI A3 - 2024  ", price:150, img:"../images/covers/mi_a3_2024.jpg"},
+  {id:13, title:"Samsung m31 ", price:150, img:"../images/covers/sam_m31.jpg"},
+  {id:14, title:" REDMI 12C ", price:150, img:"../images/covers/redmi_12c.jpg"},
+  {id:15, title:" Realme 11x 5g ", price:150, img:"../images/covers/realme_11x_5g.jpg"},
+  {id:17, title:"REALME 12X 5G  ", price:150, img:"../images/covers/realme_12x_5g.jpg"},
+  {id:18, title:"samsung a03 core ", price:150, img:"../images/covers/sam_a03_core.jpg"},
+  {id:19, title:"realme 12 plus ", price:150, img:"../images/covers/realme_12_plus.jpg"},
+  {id:20, title:"samsung a24 4g  ", price:150, img:"../images/covers/sam_a24_4g.jpg"},
+  {id:21, title:"redmi a1  ", price:150, img:"../images/covers/redmi_a1.jpg "},
+  {id:22, title:" moto 50 fusion ", price:150, img:"../images/covers/mot_50_fusion.jpg"},
+  {id:23, title:" REALME 8S 5G  ", price:150, img:"../images/covers/realme_8s_5g.jpg"},
+  {id:24, title:" mi 9 prime  ", price:150, img:"../images/covers/mi_9prime.jpg"},
+  {id:25, title:" Realme 8i ", price:150, img:"../images/covers/realme_8i.jpg"},
+  {id:26, title:" redmi 14c  ", price:150, img:"../images/covers/redmi_14c.jpg"},
+  {id:27, title:" Realme c2 ", price:150, img:"../images/covers/realme_c2.jpg"},
+  {id:28, title:" oppo a9  ", price:150, img:"../images/covers/oppo_a9.jpg"},
+  {id:29, title:" oppo a38  ", price:150, img:"../images/covers/oppo_a38.jpg "},
+  {id:30, title:" poco m6 pro 5g  ", price:150, img:"../images/covers/poco_m6.jpg"},
+  {id:31, title:" realme 6 pro  ", price:150, img:"../images/covers/realme_6pro.jpg"},
+  {id:32, title:" mi note 9 pro ", price:150, img:"../images/covers/mi_note9_pro.jpg "},
+  {id:33, title:" redmi 8 ", price:150, img:"../images/covers/redmi_8.jpg"},
+  {id:34, title:" redmi 8a dual ", price:150, img:"../images/covers/redmi_8a_dual.jpg"},
+  {id:35, title:" Oppo a16 ", price:150, img:"../images/covers/oppo_a16.jpg"},
+  {id:36, title:" samsung a70 ", price:150, img:"../images/covers/samsung_a70.jpg"},
+  {id:37, title:" samsung a14 4g  ", price:150, img:"../images/covers/samsung_a14_5g.jpg "},
+  {id:38, title:" realme c71 ", price:150, img:"../images/covers/realme_c71.jpg"},
+  {id:39, title:" vivo y16 ", price:150, img:"../images/covers/vivo_y16.jpg"},
+  {id:40, title:" Oppo a3 ", price:150, img:"../images/covers/oppo_a3.jpg "},
+  {id:41, title:" Redmi 12  ", price:150, img:"../images/covers/redmi_12.jpg"},
+  {id:42, title:" realme c55 ", price:150, img:"../images/covers/realme_c55.jpg"},
+  {id:43, title:" mi note 7 ", price:150, img:"../images/covers/mi_note_7.jpg"},
+  {id:44, title:" redmi 5 ", price:150, img:"../images/covers/redmi_5.jpg"},
+  {id:45, title:" realme 7 ", price:150, img:"../images/covers/realme_7.jpg"},
+  {id:46, title:" vivo y17 ", price:150, img:"../images/covers/vivo_y17.jpg"},
+  {id:47, title:" vivo t4 5g  ", price:150, img:"../images/covers/vivo_t4.jpg"},
+  {id:48, title:" vivo y20 ", price:150, img:"../images/covers/vivo_y20.jpg"},
+  {id:49, title:" vivo y71 ", price:150, img:"../images/covers/vivo_y71.jpg"},
+  {id:50, title:" vivo y91 ", price:150, img:"../images/covers/vivo_y91.jpg"},
+  {id:50, title:" vivo y21 ", price:150, img:"../images/covers/vivo_y21.jpg"},
+  {id:50, title:" vivo y17s ", price:150, img:"../images/covers/vivo_y17s.jpg"},
+];
+
+// ======================= RENDERING =======================
+const grid = document.getElementById('grid');
+const noResults = document.getElementById('noResults');
+
+function render(list){
+  grid.innerHTML='';
+  if(!list.length){ noResults.style.display='block'; return; }
+  noResults.style.display='none';
+
+  list.forEach(p=>{
+    const c=document.createElement('div'); c.className='card';
+    c.innerHTML=`
+      <div class="thumb">
+        <img loading="lazy" src="${p.img}" alt="${escapeHtml(p.title)}"
+        onerror="this.onerror=null;this.src='../images/placeholder-cover.jpg'">
+      </div>
+      <div class="info">
+        <div class="title">${escapeHtml(p.title)}</div>
+        <div class="price">₹${p.price}</div>
+        <div class="meta">ID: ${p.id}</div>
+      </div>
+    `;
+    grid.appendChild(c);
+  });
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+render(products);
+
+// ======================= SEARCH & FILTER =======================
+const q=document.getElementById('q');
+const priceFilter=document.getElementById('priceFilter');
+
+function applyFilters(){
+  const query=q.value.trim().toLowerCase();
+  const pf=priceFilter.value;
+  const filtered=products.filter(p=>{
+    const matchQ=!query || (p.title && p.title.toLowerCase().includes(query));
+    let matchPrice=true;
+    if(pf==='under150') matchPrice=p.price<150;
+    if(pf==='150-300') matchPrice=p.price>=150 && p.price<=300;
+    if(pf==='above300') matchPrice=p.price>300;
+    return matchQ && matchPrice;
+  });
+  render(filtered);
+}
+q.addEventListener('input',applyFilters);
+priceFilter.addEventListener('change',applyFilters);
+
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  q.value=''; priceFilter.value='all'; render(products);
+});
+</script>
+
+</body>
+</html>
