@@ -13,6 +13,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AM Mobile Service</title>
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -160,7 +161,7 @@
       box-shadow: 0 -3px 10px rgba(0,0,0,0.4);
     }
 
-    /* ✅ Floating WhatsApp Button */
+    /* WhatsApp Floating */
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
@@ -186,13 +187,6 @@
       background: #20ba5a;
     }
 
-    @media(max-width: 768px) {
-      .flip-card { width: 45%; }
-    }
-
-    @media(max-width: 480px) {
-      .flip-card { width: 90%; }
-    }
   </style>
 </head>
 <body>
@@ -212,9 +206,13 @@
     <a href="privacy.html"><button>Privacy</button></a>
     <a href="contact.html"><button>Contact</button></a>
     <a href="about.html"><button>About</button></a>
-
-    
   </nav>
+
+  <!-- ✅ Adsterra Native Banner Ad Inserted Here -->
+  <div style="margin: 20px 0; text-align:center;">
+    <script async="async" data-cfasync="false" src="//pl28110189.effectivegatecpm.com/2ce30653545386d2588b1c6a0463f7ad/invoke.js"></script>
+    <div id="container-2ce30653545386d2588b1c6a0463f7ad"></div>
+  </div>
 
   <main>
     <section id="covers" class="category">
@@ -249,19 +247,18 @@
       </div>
     </section>
 
-   
   </main>
 
   <footer>
     © 2025 AM Mobile Service | All Rights Reserved
   </footer>
 
-  <!-- ✅ Floating WhatsApp Button -->
+  <!-- WhatsApp Button -->
   <a href="https://wa.me/919937188717?text=Hello%20AM%20Mobile%20Service%20👋%2C%20I’m%20interested%20in%20your%20products.%20Please%20share%20more%20details!" class="whatsapp-float" target="_blank">
     💬
   </a>
 
-  <script>
+<script>
     function showCategory(categoryId){
       const categories = document.querySelectorAll('.category');
       categories.forEach(c => c.style.display = 'none');
@@ -282,7 +279,7 @@
     function openCombos() {
       window.location.href = "categories/combo.html";
     }
-  </script>
+</script>
 
 </body>
 </html>
