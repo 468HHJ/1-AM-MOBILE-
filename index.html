@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-
-  <!-- 🔥 Adsterra Script -->
-  <script type='text/javascript' src='//pl28121777.effectivegatecpm.com/36/30/28/36302873c29e48961c57f96328cc90c6.js'></script>
-
   <!-- ✅ Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2FCVKVND26"></script>  
   <script>
@@ -17,7 +13,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AM Mobile Service</title>
-
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -156,6 +151,16 @@
       text-shadow: 1px 1px 6px #000;
     }
 
+    .section-header {
+      width: 100%;
+      text-align: center;
+      color: #ff416c;
+      font-size: 1.5rem;
+      margin: 20px 0;
+      font-weight: bold;
+      text-shadow: 2px 2px 8px #000;
+    }
+
     footer {
       background: #222;
       text-align: center;
@@ -165,6 +170,7 @@
       box-shadow: 0 -3px 10px rgba(0,0,0,0.4);
     }
 
+    /* ✅ Floating WhatsApp Button */
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
@@ -190,6 +196,13 @@
       background: #20ba5a;
     }
 
+    @media(max-width: 768px) {
+      .flip-card { width: 45%; }
+    }
+
+    @media(max-width: 480px) {
+      .flip-card { width: 90%; }
+    }
   </style>
 </head>
 <body>
@@ -211,69 +224,90 @@
     <a href="about.html"><button>About</button></a>
   </nav>
 
-  <!-- 🔥 HighPerformanceFormat Ad -->
-  <div style="margin: 20px 0; text-align:center;">
-    <script type="text/javascript">
-        atOptions = {
-            'key' : 'ad0ae782ae51cdee322bebc56c31add7',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="https://www.highperformanceformat.com/ad0ae782ae51cdee322bebc56c31add7/invoke.js"></script>
-  </div>
-
   <main>
     <section id="covers" class="category">
       <h2>Mobile Covers</h2>
-      <div class="grid">
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="images/mi_9a_flipcover.jpg" alt="MI 9A FLIP COVER">
-            </div>
-            <div class="flip-card-back">
-              Mi 9a flip Cover<br>₹150
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="grid"></div>
+    </section>
+
+    <section id="keepad_mobile_1" class="category">
+      <h2>Mobile Covers</h2>
+      <div class="grid"></div>
+    </section>
+
+    <section id="keepad_mobile_2" class="category">
+      <h2>Mobile Covers</h2>
+      <div class="grid"></div>
     </section>
 
     <section id="chargers" class="category">
       <h2>Chargers</h2>
-      <div class="grid">
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="images/charger1.jpg" alt="Charger 1">
-            </div>
-            <div class="flip-card-back">
-              Fast Charger 25W<br>₹499
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="grid"></div>
     </section>
-
   </main>
 
   <footer>
     © 2025 AM Mobile Service | All Rights Reserved
   </footer>
 
-  <!-- WhatsApp Button -->
+  <!-- ✅ Floating WhatsApp Button -->
   <a href="https://wa.me/919937188717?text=Hello%20AM%20Mobile%20Service%20👋%2C%20I’m%20interested%20in%20your%20products.%20Please%20share%20more%20details!" class="whatsapp-float" target="_blank">
     💬
   </a>
 
-<script>
+  <script>
+    // प्रोडक्ट्स के arrays (यहाँ ऐड/डिलीट करें)
+    const covers = [
+     // {header: true, text:"More Products"},  // यहाँ मैन्युअली हेडर ऐड करें
+      {id:1, title:"Samsung J2 flipcover ", price:120, img:"../images/covers/sam_j2.jpg"},
+      {id:2, title:"Samsung a25 5g  flopcover", price:150, img:"../images/covers/sam_a25_5g.jpg"},
+      {id:3, title:"Redmi a1 plus flipcover", price:130, img:"../images/covers/mi_a1_plus.jpg"},
+      {id:4, title:"realme c12 flipcover ", price:140, img:"../images/covers/realme_c12.jpg"},
+      {id:5, title:"Realme c67 4g ", price:160, img:"../images/covers/realme_c67_4g.jpg"},
+      {header: true, text:"KEEPAD MOBILES "},  // यहाँ मैन्युअली हेडर ऐड करें
+      {id:6, title:"GIVA  KEE PAD MOBILE ", price:600, img:"../images/givachina.jpg"},
+      {id:7, title:"LAVA HERO SHAKTI ", price:1000, img:"../images/lava_hero.jpg"},
+     // {id:8, title:"NARZO N53 ", price:150, img:"../images/covers/realme_c53.jpg"},
+     // {id:9, title:"MI NOTE 6 PRO ", price:140, img:"../images/covers/mi_note_6pro.jpg"},
+     // {id:10, title:"MI 9A FLIPCOVER ", price:120, img:"../images/covers/mi_9a.jpg"},
+     // {header: true, text:"More Products"},  // यहाँ मैन्युअली हेडर ऐड करें                   
+     // {id:12, title:"MI A3 - 2024  ", price:150, img:"../images/covers/mi_a3_2024.jpg"},
+     // {id:13, title:"Samsung m31 ", price:150, img:"../images/covers/sam_m31.jpg"},
+      
+    ];
+
+    // फंक्शन जो HTML रेंडर करता है (मैन्युअल हेडर के लिए चेक ऐड किया)
+    function renderProducts(categoryId, productArray) {
+      const grid = document.querySelector(`#${categoryId} .grid`);
+      grid.innerHTML = '';
+      productArray.forEach(product => {
+        if (product.header) {
+          grid.innerHTML += '<h3 class="section-header">' + product.text + '</h3>';
+        } else {
+          const cardHTML = `
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="${product.img}" alt="${product.title}">
+                </div>
+                <div class="flip-card-back">
+                  ${product.title}<br>₹${product.price}
+                </div>
+              </div>
+            </div>
+          `;
+          grid.innerHTML += cardHTML;
+        }
+      });
+    }
+
+    // कैटेगरी दिखाने का फंक्शन
     function showCategory(categoryId){
       const categories = document.querySelectorAll('.category');
       categories.forEach(c => c.style.display = 'none');
       document.getElementById(categoryId).style.display = 'block';
+      if (categoryId === 'covers') renderProducts('covers', covers);
+      // अन्य कैटेगरी के लिए भी ऐड करें अगर चाहिए
     }
 
     window.onload = () => showCategory('covers');
@@ -290,7 +324,7 @@
     function openCombos() {
       window.location.href = "categories/combo.html";
     }
-</script>
+  </script>
 
 </body>
 </html>
