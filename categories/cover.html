@@ -4,173 +4,138 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Mobile Covers - AM Mobile Service</title>
+
 <style>
-  :root{
-    --bg: #0d0d0d;
-    --card: #1a1a1a;
-    --accent: #ff416c;
-    --text: #fff;
-    --muted: #aaa;
-  }
+:root{
+  --bg:#0d0d0d;
+  --card:#1a1a1a;
+  --accent:#ff416c;
+  --text:#fff;
+  --muted:#aaa;
+}
 
-  *{box-sizing:border-box;margin:0;padding:0;}
+*{box-sizing:border-box;margin:0;padding:0;}
 
-  body{
-    font-family: "Segoe UI", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-  }
+body{
+  font-family:"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
 
-  header{
-    background: linear-gradient(90deg,var(--accent),#ff4b2b);
-    padding:18px;
-    text-align:center;
-    font-weight:700;
-    font-size:20px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.5);
-  }
+header{
+  background:linear-gradient(90deg,var(--accent),#ff4b2b);
+  padding:18px;
+  text-align:center;
+  font-weight:700;
+  font-size:20px;
+}
 
-  .top-controls{
-    display:flex;
-    gap:12px;
-    align-items:center;
-    justify-content:center;
-    padding:14px;
-    background:#0b0b0b;
-    border-bottom:1px solid rgba(255,255,255,0.05);
-    flex-wrap:wrap;
-  }
+/* TOP CONTROLS */
+.top-controls{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  padding:14px;
+  background:#0b0b0b;
+  flex-wrap:wrap;
+}
 
-  .top-controls input,
-  .top-controls select,
-  .top-controls button{
-    padding:10px 12px;
-    border-radius:8px;
-    border: none;
-    background:#111;
-    color:#fff;
-    outline:none;
-    min-width:200px;
-  }
+.top-controls input,
+.top-controls select,
+.top-controls button{
+  padding:10px 12px;
+  border-radius:8px;
+  border:none;
+  background:#111;
+  color:#fff;
+  min-width:200px;
+}
 
-  .top-controls button{
-    background: linear-gradient(145deg,#444,#222);
-    cursor:pointer;
-    transition: all 0.3s;
-    font-weight: bold;
-  }
-  .top-controls button:hover{
-    background: linear-gradient(145deg,var(--accent),#ff4b2b);
-    transform: scale(1.05);
-  }
+.top-controls button{
+  background:linear-gradient(145deg,#444,#222);
+  cursor:pointer;
+  font-weight:bold;
+}
+.top-controls button:hover{
+  background:linear-gradient(145deg,var(--accent),#ff4b2b);
+}
 
-  .container{
-    padding:20px;
-    max-width:1200px;
-    margin:auto;
-  }
+/* GRID */
+.container{
+  padding:20px;
+  max-width:1200px;
+  margin:auto;
+}
 
-  .grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap:20px;
-    justify-content:center;
-  }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:20px;
+}
 
-  /* 3D Card Effect */
-  .card{
-    background: var(--card);
-    border-radius: 12px;
-    overflow: hidden;
-    text-align: center;
-    padding-bottom: 10px;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.6);
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    transition: all 0.4s ease;
-  }
+/* CARD */
+.card{
+  background:var(--card);
+  border-radius:12px;
+  overflow:hidden;
+  text-align:center;
+  box-shadow:0 8px 18px rgba(0,0,0,0.6);
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 30px rgba(255,65,108,.5);
+}
 
-  .card:hover{
-    transform: rotateY(10deg) translateY(-8px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(255,65,108,0.5);
-  }
+/* 🔥 IMAGE CUT FIX */
+.thumb{
+  width:100%;
+  aspect-ratio:1/1;     /* same size box */
+  background:#fff;      /* transparent images ke liye */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px;
+}
 
-  .thumb{
-    width:100%;
-    height:180px;
-    background:#111;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-  }
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:contain;   /* 🔥 image kabhi cut nahi hogi */
+}
 
-  .thumb img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition: transform 0.5s ease;
-  }
+/* INFO */
+.info{padding:12px;}
+.title{font-size:15px;font-weight:600;}
+.price{color:#00ffcc;font-weight:700;}
+.meta{font-size:13px;color:var(--muted);}
 
-  .card:hover img{
-    transform: scale(1.1);
-  }
+.no-results{
+  text-align:center;
+  color:#aaa;
+  padding:40px;
+}
 
-  .info{ padding:12px; }
-  .title{
-    font-weight:600;
-    font-size:15px;
-    margin:6px 0 4px;
-    color:#fff;
-  }
+footer{
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:15px;
+  margin-top:30px;
+}
 
-  .price{
-    color:#00ffcc;
-    font-weight:700;
-    font-size:15px;
-  }
-
-  .meta{
-    color:var(--muted);
-    font-size:13px;
-    margin-top:4px;
-  }
-
-  .no-results{
-    text-align:center;
-    color:var(--muted);
-    padding:40px 10px;
-    font-size:18px;
-  }
-
-  .hint {
-    text-align:center;
-    color:var(--muted);
-    font-size:13px;
-    margin-top:12px;
-  }
-
-  footer{
-    background:#111;
-    text-align:center;
-    color:#aaa;
-    padding:15px;
-    margin-top:30px;
-  }
-
-  @media(max-width:480px){
-    .thumb{ height:150px; }
-    .top-controls input{ min-width:140px; }
-  }
+@media(max-width:480px){
+  .top-controls input{min-width:140px;}
+}
 </style>
 </head>
+
 <body>
 
 <header>📱 Mobile Covers Collection</header>
 
 <div class="top-controls">
-  <input type="text" id="q" placeholder="Search cover (e.g. Redmi 9A)" />
+  <input type="text" id="q" placeholder="Search cover (e.g. Redmi 9A)">
   <select id="priceFilter">
     <option value="all">All Prices</option>
     <option value="under150">Under ₹150</option>
@@ -183,93 +148,73 @@
 
 <div class="container">
   <div id="grid" class="grid"></div>
-  <div id="noResults" class="no-results" style="display:none;"> NOT FOUND </div>
-
-  <div class="hint">
-    not found 
-   
-  </div>
+  <div id="noResults" class="no-results" style="display:none;">NOT FOUND</div>
 </div>
 
 <footer>© 2025 AM Mobile Service | All Rights Reserved</footer>
 
 <script>
-// ======================= HOW TO ADD PRODUCTS =======================
-// हर cover को नीचे products array में ऐसे add करो:
-// { id:11, title:"Redmi Note 10 Pro Case", price:200, img:"../images/covers/cover-011.jpg" }
-const products = [
-  {id:1, title:"Redmi 9A Soft Cover", price:120, img:"../images/covers/cover-001.jpg"},
-  {id:2, title:"Redmi 10A Transparent", price:150, img:"../images/covers/cover-002.jpg"},
-  {id:3, title:"Poco C31 Shockproof", price:130, img:"../images/covers/cover-003.jpg"},
-  {id:4, title:"Mi Note 7 Pro Leather", price:140, img:"../images/covers/cover-004.jpg"},
-  {id:5, title:"Samsung M12 Back Case", price:160, img:"../images/covers/cover-005.jpg"},
-  {id:6, title:"Realme Narzo 50A Flip", price:150, img:"../images/covers/cover-006.jpg"},
-  {id:7, title:"Infinix Hot 12 Clear", price:170, img:"../images/covers/cover-007.jpg"},
-  {id:8, title:"Vivo Y16 Patterned", price:150, img:"../images/covers/cover-008.jpg"},
-  {id:9, title:"Oppo A17 Graphic", price:140, img:"../images/covers/cover-009.jpg"},
-  {id:10, title:"Redmi 8A Dual Case", price:120, img:"../images/covers/cover-010.jpg"},
-  {id:11,title:"Redmi A5 / POCO C71",price:150,img:"../images/covers/redmia5_pococ71.jpg"},
-  {id:12,title:"Vivo T4",price:150,img:"../images/covers/vivo t4 .jpg"},
-  {id:13,title:"Moto Edge 50 Fusion",price:150,img:"../images/covers/moto edge 50 fusion .jpg"}
+const products=[
+ {id:1,title:"Redmi 9A Soft Cover",price:120,img:"../images/covers/cover-001.jpg"},
+ {id:2,title:"Redmi 10A Transparent",price:150,img:"../images/covers/cover-002.jpg"},
+ {id:3,title:"Poco C31 Shockproof",price:130,img:"../images/covers/cover-003.jpg"},
+ {id:4,title:"Mi Note 7 Pro Leather",price:140,img:"../images/covers/cover-004.jpg"},
+ {id:5,title:"Samsung M12 Back Case",price:160,img:"../images/covers/cover-005.jpg"},
+ {id:6,title:"Realme Narzo 50A Flip",price:150,img:"../images/covers/cover-006.jpg"},
+ {id:7,title:"Infinix Hot 12 Clear",price:170,img:"../images/covers/cover-007.jpg"},
+ {id:8,title:"Vivo Y16 Patterned",price:150,img:"../images/covers/cover-008.jpg"},
+ {id:9,title:"Oppo A17 Graphic",price:140,img:"../images/covers/cover-009.jpg"},
+ {id:10,title:"Redmi 8A Dual Case",price:120,img:"../images/covers/cover-010.jpg"},
+ {id:11,title:"Redmi A5 / POCO C71",price:150,img:"../images/covers/redmia5_pococ71.jpg"},
+ {id:12,title:"Vivo T4",price:150,img:"../images/covers/vivo-t4.jpg"},
+ {id:13,title:"Moto Edge 50 Fusion",price:150,img:"../images/covers/moto-edge-50-fusion.jpg"}
 ];
 
-// ======================= RENDERING =======================
-const grid = document.getElementById('grid');
-const noResults = document.getElementById('noResults');
+const grid=document.getElementById("grid");
+const noResults=document.getElementById("noResults");
 
 function render(list){
-  grid.innerHTML='';
-  if(!list.length){ noResults.style.display='block'; return; }
-  noResults.style.display='none';
-
-  list.forEach(p=>{
-    const c=document.createElement('div'); c.className='card';
-    c.innerHTML=`
-      <div class="thumb">
-        <img loading="lazy" src="${p.img}" alt="${escapeHtml(p.title)}"
-        onerror="this.onerror=null;this.src='../images/placeholder-cover.jpg'">
-      </div>
-      <div class="info">
-        <div class="title">${escapeHtml(p.title)}</div>
-        <div class="price">₹${p.price}</div>
-        <div class="meta">ID: ${p.id}</div>
-      </div>
-    `;
-    grid.appendChild(c);
-  });
-}
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+ grid.innerHTML="";
+ if(!list.length){noResults.style.display="block";return;}
+ noResults.style.display="none";
+ list.forEach(p=>{
+  const c=document.createElement("div");
+  c.className="card";
+  c.innerHTML=`
+   <div class="thumb">
+    <img src="${p.img}" loading="lazy"
+     onerror="this.src='../images/placeholder-cover.jpg'">
+   </div>
+   <div class="info">
+    <div class="title">${p.title}</div>
+    <div class="price">₹${p.price}</div>
+    <div class="meta">ID: ${p.id}</div>
+   </div>`;
+  grid.appendChild(c);
+ });
 }
 render(products);
 
-// ======================= SEARCH & FILTER =======================
-const q=document.getElementById('q');
-const priceFilter=document.getElementById('priceFilter');
+const q=document.getElementById("q");
+const priceFilter=document.getElementById("priceFilter");
 
-function applyFilters(){
-  const query=q.value.trim().toLowerCase();
-  const pf=priceFilter.value;
-  const filtered=products.filter(p=>{
-    const matchQ=!query || (p.title && p.title.toLowerCase().includes(query));
-    let matchPrice=true;
-    if(pf==='under150') matchPrice=p.price<150;
-    if(pf==='150-300') matchPrice=p.price>=150 && p.price<=300;
-    if(pf==='above300') matchPrice=p.price>300;
-    return matchQ && matchPrice;
-  });
-  render(filtered);
+function apply(){
+ const t=q.value.toLowerCase();
+ const pf=priceFilter.value;
+ render(products.filter(p=>{
+  let okTitle=!t||p.title.toLowerCase().includes(t);
+  let okPrice=true;
+  if(pf==="under150") okPrice=p.price<150;
+  if(pf==="150-300") okPrice=p.price>=150&&p.price<=300;
+  if(pf==="above300") okPrice=p.price>300;
+  return okTitle&&okPrice;
+ }));
 }
-q.addEventListener('input',applyFilters);
-priceFilter.addEventListener('change',applyFilters);
 
-document.getElementById('resetBtn').addEventListener('click',()=>{
-  q.value=''; priceFilter.value='all'; render(products);
-});
+q.oninput=apply;
+priceFilter.onchange=apply;
+resetBtn.onclick=()=>{q.value="";priceFilter.value="all";render(products);}
 </script>
 
 </body>
 </html>
-
-
-
