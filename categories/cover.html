@@ -155,20 +155,48 @@ footer{
 
 <script>
 const products=[
- {id:1,title:"Redmi 9A Soft Cover",price:120,img:"../images/covers/cover-001.jpg"},
- {id:2,title:"Redmi 10A Transparent",price:150,img:"../images/covers/cover-002.jpg"},
- {id:3,title:"Poco C31 Shockproof",price:130,img:"../images/covers/cover-003.jpg"},
- {id:4,title:"Mi Note 7 Pro Leather",price:140,img:"../images/covers/cover-004.jpg"},
- {id:5,title:"Samsung M12 Back Case",price:160,img:"../images/covers/cover-005.jpg"},
- {id:6,title:"Realme Narzo 50A Flip",price:150,img:"../images/covers/cover-006.jpg"},
- {id:7,title:"Infinix Hot 12 Clear",price:170,img:"../images/covers/cover-007.jpg"},
- {id:8,title:"Vivo Y16 Patterned",price:150,img:"../images/covers/cover-008.jpg"},
- {id:9,title:"Oppo A17 Graphic",price:140,img:"../images/covers/cover-009.jpg"},
- {id:10,title:"Redmi 8A Dual Case",price:120,img:"../images/covers/cover-010.jpg"},
+ {id:1,title:"Redmi 9A Soft Cover",price:120,img:"../images/covers/mi-9a.jpg"},
+ {id:2,title:"Redmi 10c ",price:150,img:"../images/covers/redmi-10c.jpg"},
+ {id:3,title:"realme P3x",price:130,img:"../images/covers/realme-p3x.jpg"},
+ {id:4,title:"Vivo Y29",price:140,img:"../images/covers/vivo-y29.jpg"},
+ {id:5,title:"Redmi Note 11",price:160,img:"../images/covers/redmi-note11.jpg"},
+ {id:6,title:"Samsung S24 FE",price:150,img:"../images/covers/samsung-s24fe.jpg"},
+ {id:7,title:"POCO C31",price:170,img:"../images/covers/poco-c31.jpg"},
+ {id:8,title:"Redmi Note 13 5G",price:150,img:"../images/covers/redmi-note-13-5g.jpg"},
+ {id:9,title:"Vivo Y16",price:140,img:"../images/covers/vivo-y16.jpg"},
+ {id:10,title:"Realme C55",price:120,img:"../images/covers/realme-c55.jpg"},
  {id:11,title:"Redmi A5 / POCO C71",price:150,img:"../images/covers/redmia5_pococ71.jpg"},
  {id:12,title:"Vivo T4",price:150,img:"../images/covers/vivo t4 .jpg"},
- {id:13,title:"Moto Edge 50 Fusion",price:150,img:"../images/covers/moto edge 50 fusion .jpg"}
-];
+ {id:13,title:"Moto Edge 50 Fusion",price:150,img:"../images/covers/moto edge 50 fusion .jpg"},
+ {id:14,title:"OnePlus Nord 4 5G",price:150,img:"../images/covers/oneplus-nord4-5g.jpg"},
+ {id:15,title:"POCO M4 4G",price:150,img:"../images/covers/poco-m4-4g.jpg"},
+ {id:16,title:"Vivo V27 Pro",price:150,img:"../images/covers/vivo-v27pro.jpg"},
+ {id:17,title:"Vivo Y17",price:150,img:"../images/covers/vivo-y17.jpg"},
+ {id:18,title:"Vivo Y20",price:150,img:"../images/covers/vivo-y20.jpg"},
+ {id:19,title:"Realme 9i 5G",price:150,img:"../images/covers/realme-9i-5g.jpg"},
+ {id:20,title:"Realme 6",price:150,img:"../images/covers/realme-6.jpg"},
+ {id:21,title:"Vivo Y30",price:150,img:"../images/covers/vivo-y30.jpg"},
+ {id:22,title:"spark 8",price:150,img:"../images/covers/spark-8.jpg"},
+ {id:23,title:"Vivo Y12",price:150,img:"../images/covers/vivo-y12.jpg"},
+ {id:24,title:"Realme 7 Pro",price:150,img:"../images/covers/realme-7pro.jpg"},
+ {id:25,title:"Realme 7",price:150,img:"../images/covers/realme-7.jpg"},
+ {id:26,title:"Realme 9i 4G",price:150,img:"../images/covers/realme-9i-4g.jpg"},
+ {id:27,title:"Vivo Y73",price:150,img:"../images/covers/vivo-y73.jpg"},
+ {id:28,title:"F19",price:150,img:"../images/covers/f19.jpg"},
+ {id:29,title:"Redmi Note 12",price:150,img:"../images/covers/redmi-note-12.jpg"},
+ {id:30,title:"Realme C35",price:150,img:"../images/covers/realme-c35.jpg"},
+ {id:31,title:"Realme C20",price:150,img:"../images/covers/realme-c20.jpg"},
+ {id:32,title:"OnePlus CE2 Lite",price:150,img:"../images/covers/oneplus-ce2-lite.jpg"},
+ {id:33,title:"Vivo Y22",price:150,img:"../images/covers/vivo-y22.jpg"},
+ {id:34,title:"Realme 12 4G",price:150,img:"../images/covers/reale-12-4g.jpg"},
+ {id:35,title:"vivo y50",price:150,img:"../images/covers/vivo-y50.jpg"},
+ {id:36,title:"Samsung M31",price:150,img:"../images/covers/samsug-m31.jpg"},
+ {id:37,title:"oppo f11",price:150,img:"../images/covers/oppo-f11.jpg"},
+ {id:38,title:" vivo y15s ",price:150,img:"../images/covers/vivo-y15s.jpg"},
+ {id:39,title:" vivo v15",price:150,img:"../images/covers/vivo-v15.jpg"},
+ {id:40,title:"v30",price:150,img:"../images/covers/v30.jpg"},
+ 
+ ];
 
 const grid=document.getElementById("grid");
 const noResults=document.getElementById("noResults");
@@ -215,6 +243,10 @@ q.oninput=apply;
 priceFilter.onchange=apply;
 resetBtn.onclick=()=>{q.value="";priceFilter.value="all";render(products);}
 </script>
+<div id="list"></div>
+
+
+
 
 </body>
 </html>
